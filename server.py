@@ -20,8 +20,6 @@ sio.attach(app)
 
 
 
-
-
 # Set up a routing function
 async def routing(request):
 	# "request" contains some information about
@@ -43,21 +41,29 @@ async def routing(request):
 
 # A list of people on the list
 people = []
+pw = "FuzzyWuzzy!"
 
 @sio.on('to_server')
 async def event_to_server(sid, data):
-	if data['type'] == 'add':
-		# This event is for when a person is added.
-		# When they are, add their name to the list.
-		people.append(data['name'])
-	elif data['type'] == 'remove':
-		# This event is for when a person is removed.
-		# When they are, remove their name from the
-		# list.
-		people.remove(str(data['name']))
-	# Every time an event is received, broadcast the list
-	# of people to all clients
-	await sio.emit('to_client', {'type':'people', 'people':people})
+	if data['type'] == 'verify':
+		EnteredPW = (data['pw'])
+		if EnteredPW == pw:
+			await sio.emit('to_client', {'type':'verify', 'result':True}, room=sid)
+		else:
+			await sio.emit('to_client', {'type':'verify', 'result':False}, room=sid)
+		return
+	EnteredPW = (data['pw'])
+	if EnteredPW == pw:
+		# The password is correct
+		if data['type'] == 'add':
+			# User requested to add a person
+			people.append(data['name'])
+		elif data['type'] == 'remove':
+			# User requested to remove a person.
+			people.remove(str(data['name']))
+		# Every time an event is received, broadcast the list
+		# of people to all clients
+		await sio.emit('to_client', {'type':'people', 'people':people})
 
 
 # Attach routing function to server get request for "/"
@@ -71,4 +77,3 @@ if __name__ == '__main__':
 	# is running directly and not imported.
 
 	web.run_app(app)
-
