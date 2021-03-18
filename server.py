@@ -24,7 +24,7 @@ sio.attach(app)
 
 # Set up a routing function
 async def routing(request):
-    # "request" contains some information about
+	# "request" contains some information about
 	# the get request. Below the "path" attribute
 	# is used to get the exact path requested by
 	# the client
@@ -37,19 +37,26 @@ async def routing(request):
 
 
 # This will detect when a message is received.
-# It will only detect messages called "to_server".
-# The name can always be changed, though must be
-# the same in both the client's and server's code.
+# All messages to the server are of type
+# "to_server". The type attribute in the data
+# defines the event type.
 
-
+# A list of people on the list
 people = []
 
 @sio.on('to_server')
 async def event_to_server(sid, data):
 	if data['type'] == 'add':
+		# This event is for when a person is added.
+		# When they are, add their name to the list.
 		people.append(data['name'])
 	elif data['type'] == 'remove':
+		# This event is for when a person is removed.
+		# When they are, remove their name from the
+		# list.
 		people.remove(str(data['name']))
+	# Every time an event is received, broadcast the list
+	# of people to all clients
 	await sio.emit('to_client', {'type':'people', 'people':people})
 
 
