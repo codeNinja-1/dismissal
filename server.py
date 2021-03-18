@@ -33,6 +33,9 @@ async def routing(request):
 	elif request.path == '/client.js':
 		with open('client/client.js') as f:
 		    return web.Response(text=f.read(), content_type='text/javascript')
+	elif request.path == '/master.css':
+		with open('client/master.css') as f:
+		    return web.Response(text=f.read(), content_type='text/css')
 
 
 # This will detect when a message is received.
@@ -54,7 +57,7 @@ async def event_to_server(sid, data):
 		await sio.emit('to_client', {'type':'people', 'people':people}, room=sid)
 		return
 	if not (lastfail < time.time() - 5):
-		await sio.emit('to_client', {'type':'wait'}, room=sid)
+		await sio.emit('to_client', {'type':'wait', 'wait_time':5 - (time.time() - lastfail)}, room=sid)
 		return
 	if data['type'] == 'verify':
 		EnteredPW = (data['pw'])
@@ -97,6 +100,7 @@ async def event_to_server(sid, data):
 # (the default page) and /client.js
 app.router.add_get('/', routing)
 app.router.add_get('/client.js', routing)
+app.router.add_get('/master.css', routing)
 
 # Start the server
 if __name__ == '__main__':
