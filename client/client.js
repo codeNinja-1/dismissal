@@ -1,6 +1,17 @@
 var socket = io();
-socket.emit('to_server', {"message":"Hello World!"});
 socket.on('to_client', function (data) {
-	console.log("Message received from server");
-	console.log("Message data:", data);
+	if (data['type'] == 'people') {
+		list.innerHTML = '';
+		for (var i = 0; i < data['people'].length; i++) {
+			var elem = document.createElement('div');
+			elem.textContent = data['people'][i];
+			list.appendChild(elem);
+		}
+	}
 })
+function add() {
+	socket.emit('to_server', {'type':'add','name':who.value});
+}
+function remove() {
+	socket.emit('to_server', {'type':'remove','name':who.value});
+}
