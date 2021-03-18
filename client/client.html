@@ -15,19 +15,20 @@
 		</div>
 		<div id="login_section" class="half-width">
 			<input class="input" type="password" id="pw_input" value="" style="width:100%;" placeholder="Password..."><br>
-			<span id="wait_text" style="display:none;">Wait 5 seconds and retry</span><br>
-			<div type="button" name="button" onclick="skip()" class="button alt">Skip</div>
-			<div type="button" name="button" onclick="login()" class="button">Log In</div>
+			<div id="wait_text" style="opacity:0;color:red;font-size:12px;text-align:left;margin-top:2px;">Wait 5 seconds and retry</div><br>
+			<div type="button" name="button" onclick="login()" class="button" style="float:right;margin-top:-31px;">LOG IN TO EDIT</div>
+			<div type="button" name="button" onclick="skip()" class="button alt" style="float:right;margin-right:4px;margin-top:-31px;">VIEW LIST</div>
 		</div>
 		<div id="signed_in" style="display:none;">
 			<div id="list">
 
 			</div>
 			<div id="options" style="display:none;">
-				<input type="text" id="who" value="" class="input" style="width:calc(100% - 425px);">
+				<input type="text" id="who" value="" class="input" style="width:300px;">
 				<input type="number" id="grade" value="5" min="5" max="8" onfocusout="this.value = Math.floor(Math.max(Math.min(this.value, 8), 5))" class="input" style="width:75px;">
 				<div type="button" name="button" onclick="add()" class="button alt">Add person</div>
 				<div type="button" name="button" onclick="remove()" class="button">Remove person</div>
+				<div style="margin-top:4px;font-size:12px;">Refresh to log out</div>
 			</div>
 		</div>
   </body>
