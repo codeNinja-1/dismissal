@@ -12,11 +12,19 @@
 		<div style="text-align:center;font-size:24px;font-family:'Roboto';color:#444C5A;margin:10px;">
 			Dismissal
 		</div>
-		<div id="list" style="font-family:'Roboto';font-size:15px;color:#444C5A;">
-
+		<div id="login_section">
+			Password:<br>
+			<input type="password" id="pw_input" value="" style="font-size:15px;padding:8px;background:transparent;border:2px solid dodgerblue;color:#444C5A;width:200px;display:inline-block;border-radius:3px;outline:none;"><br>
+			<div type="button" name="button" onclick="login()" style="text-align:center;font-family:'Roboto';font-size:15px;padding:10px;background:dodgerblue;color:white;display:inline-block;cursor:pointer;border-radius:3px;">Log In</div>
+			<div type="button" name="button" onclick="skip()" style="text-align:center;font-family:'Roboto';font-size:15px;padding:10px;background:dodgerblue;color:white;display:inline-block;cursor:pointer;border-radius:3px;">Skip</div>
 		</div>
-		<input type="text" id="who" value="" style="font-size:15px;padding:8px;background:transparent;border:2px solid dodgerblue;color:#444C5A;width:200px;display:inline-block;border-radius:3px;outline:none;">
-		<div type="button" name="button" onclick="add()" style="text-align:center;font-family:'Roboto';font-size:15px;padding:10px;background:dodgerblue;color:white;display:inline-block;cursor:pointer;border-radius:3px;">Add person</div>
-		<div type="button" name="button" onclick="remove()" style="text-align:center;font-family:'Roboto';font-size:15px;padding:10px;background:dodgerblue;color:white;display:inline-block;cursor:pointer;border-radius:3px;">Remove person</div>
+		<div id="signed_in" style="display:none;">
+			<div id="list" style="font-family:'Roboto';font-size:15px;color:#444C5A;">
+
+			</div>
+			<input type="text" id="who" value="" style="font-size:15px;padding:8px;background:transparent;border:2px solid dodgerblue;color:#444C5A;width:200px;display:inline-block;border-radius:3px;outline:none;">
+			<div type="button" name="button" onclick="add()" style="text-align:center;font-family:'Roboto';font-size:15px;padding:10px;background:dodgerblue;color:white;display:inline-block;cursor:pointer;border-radius:3px;">Add person</div>
+			<div type="button" name="button" onclick="remove()" style="text-align:center;font-family:'Roboto';font-size:15px;padding:10px;background:dodgerblue;color:white;display:inline-block;cursor:pointer;border-radius:3px;">Remove person</div>
+		</div>
   </body>
 </html>
