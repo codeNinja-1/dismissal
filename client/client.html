@@ -6,61 +6,17 @@
 		<script src="client.js" charset="utf-8"></script>
 		<link rel="preconnect" href="https://fonts.gstatic.com">
 		<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-		<style media="screen">
-			.input {
-				font-size:15px;
-				padding:12px;
-				background:transparent;
-				border:2px solid lightgray;
-				color:#444C5A;
-				width:200px;
-				display:inline-block;
-				border-radius:3px;
-				outline:none;
-				transition:border 0.3s;
-			}
-			.input:focus {
-				border:2px solid #387deb;
-			}
-			.title {
-				text-align:center;
-				font-size:48px;
-				margin:20px;
-			}
-			.button {
-				text-align:center;
-				font-family:'Roboto';
-				font-size:15px;
-				padding:14px;
-				background:#387deb;
-				color:white;
-				display:inline-block;
-				cursor:pointer;
-				border-radius:3px;
-				transition:background 0.3s; /* That will not cause an error. Atom just styles it weird */
-			}
-			.button:hover {
-				background:#3170d4;
-			}
-			#list {
-				font-size:15px;
-			}
-			body {
-				font-family:'Roboto';
-				color:#444C5A;
-				text-align:center;
-			}
-		</style>
+		<link rel="stylesheet" href="master.css">
 		<title>Dismissal</title>
 	</head>
   <body>
 		<div class="title">
 			Dismissal
 		</div>
-		<div id="login_section">
-			<input class="input" type="password" id="pw_input" value="" style="width:50%;" placeholder="Password..."><br>
+		<div id="login_section" class="half-width">
+			<input class="input" type="password" id="pw_input" value="" style="width:100%;" placeholder="Password..."><br>
 			<span id="wait_text" style="display:none;">Wait 5 seconds and retry</span><br>
-			<div type="button" name="button" onclick="skip()" class="button">Skip</div>
+			<div type="button" name="button" onclick="skip()" class="button alt">Skip</div>
 			<div type="button" name="button" onclick="login()" class="button">Log In</div>
 		</div>
 		<div id="signed_in" style="display:none;">
@@ -68,9 +24,9 @@
 
 			</div>
 			<div id="options" style="display:none;">
-				<input type="text" id="who" value="" class="input" style="width:calc(100% - 400px);">
-				<input type="number" id="grade" value="" class="input" style="width:50px;">
-				<div type="button" name="button" onclick="add()" class="button">Add person</div>
+				<input type="text" id="who" value="" class="input" style="width:calc(100% - 425px);">
+				<input type="number" id="grade" value="5" min="5" max="8" onfocusout="this.value = Math.floor(Math.max(Math.min(this.value, 8), 5))" class="input" style="width:75px;">
+				<div type="button" name="button" onclick="add()" class="button alt">Add person</div>
 				<div type="button" name="button" onclick="remove()" class="button">Remove person</div>
 			</div>
 		</div>
