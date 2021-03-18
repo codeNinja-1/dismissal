@@ -12,9 +12,16 @@ socket.on('to_client', function (data) {
 		if (data['result'] == true) {
 			login_section.style.display = 'none';
 			signed_in.style.display = 'block';
+			options.style.display = 'block';
 		} else {
 			alert("Incorrect password!");
 		}
+	} else if (data['type'] == 'wait') {
+		wait_text.style.display = 'block';
+	} else if (data['type'] == 'in_list') {
+		alert(data['name'] + " is already on the list!");
+	} else if (data['type'] == 'not_found') {
+		alert(data['name'] + " is not on the list!");
 	}
 })
 function add() {
@@ -26,8 +33,10 @@ function remove() {
 function login() {
 	password = pw_input.value;
 	socket.emit('to_server', {'type':'verify','pw':password});
+	socket.emit('to_server', {'type':'get'});
 }
 function skip() {
 	login_section.style.display = 'none';
 	signed_in.style.display = 'block';
+	socket.emit('to_server', {'type':'get'});
 }
