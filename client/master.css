@@ -57,6 +57,10 @@
 	width:50%;
 	display:inline-block;
 }
+.error {
+	border:2px solid red !important;
+	color:red !important;
+}
 #list {
 	font-size:15px;
 }
@@ -71,4 +75,15 @@ body {
 	-webkit-user-select:none;
 	-moz-user-select:none;
 	-o-user-select:none;
+}
+.item {
+	font-size:20px;
+	background:#F0F0F0;
+	color:#444C5A;
+	width:calc(50% - 112px);
+	display:inline-block;
+	border-radius:3px;
+	outline:none;
+	padding:12.5px;
+	margin:0px 2px 4px 2px;
 }
